@@ -1,2 +1,4 @@
 # Marketplace-API
-Desenvolvimento de uma API para um Marketplace utilizando protocolo REST.
+
+Development of a Marketplace API that operates through REST's architecture.
+
