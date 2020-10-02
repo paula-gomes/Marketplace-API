@@ -6,6 +6,7 @@ const SCHEMA = require('./tableSchema');
 
 // Table Creation
 db.serialize( () => {
+  // users table
   db.run( SCHEMA.USERS, err => {
     if (err) {
       console.log(err);
@@ -13,6 +14,7 @@ db.serialize( () => {
     }
   });
 
+  // suppliers table
   db.run( SCHEMA.SUPPLIERS, err => {
     if (err) {
       console.log(err);
@@ -20,6 +22,7 @@ db.serialize( () => {
     }
   });
 
+  // products table
   db.run( SCHEMA.PRODUCTS, err => {
     if (err) {
       console.log(err);
@@ -27,6 +30,7 @@ db.serialize( () => {
     }
   });
 
+  // sales table
   db.run( SCHEMA.SALES, err => {
     if (err) {
       console.log(err);
