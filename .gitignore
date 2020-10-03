@@ -117,3 +117,5 @@ dist
 
 # Additional files
 .DS_Store
+data.sqlite
+.vscode
