@@ -38,14 +38,7 @@ class ClientDao {
 		return new Promise((resolve, reject) => {
 
 			this._db.run(
-				`INSERT INTO CLIENTS(
-                name,
-                email,
-                password,
-                cpf,
-                phone,
-								address
-							) VALUES (?,?,?,?,?,?)`,
+				`INSERT INTO CLIENTS(name,email,password,cpf,phone,address) VALUES (?,?,?,?,?,?)`,
 				[name, email, password, cpf, phone, address],
 				(err) => {
 					if (err) {
