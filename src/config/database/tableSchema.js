@@ -1,7 +1,7 @@
 module.exports = {
   USERS: `
     CREATE TABLE IF NOT EXISTS users (
-      id INTEGER PRIMARY KEY,
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
       name VARCHAR(80) NOT NULL,
       email VARCHAR(120) NOT NULL,
       pwrd TEXT NOT NULL,
@@ -13,7 +13,7 @@ module.exports = {
 
   SUPPLIERS: `
   CREATE TABLE IF NOT EXISTS suppliers (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(120) NOT NULL,
     phone VARCHAR(9) NOT NULL
   )
@@ -21,7 +21,7 @@ module.exports = {
 
   PRODUCTS: `
     CREATE TABLE IF NOT EXISTS products (
-      id INTEGER PRIMARY KEY,
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
       rating DECIMAL(2,2) NOT NULL
         CHECK(rating < 10.01),
       name VARCHAR(120) NOT NULL,
@@ -36,7 +36,7 @@ module.exports = {
 
   SALES: `
     CREATE TABLE IF NOT EXISTS sales (
-      id INT PRIMARY KEY,
+      id INT PRIMARY KEY AUTOINCREMENT,
       product_id INT,
       user_id INT,
       FOREIGN KEY(product_id) REFERENCES products(id),
