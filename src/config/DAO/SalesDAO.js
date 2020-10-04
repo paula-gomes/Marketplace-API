@@ -97,3 +97,5 @@ class SalesDAO {
     })
   }
 }
+
+module.exports = SalesDAO;

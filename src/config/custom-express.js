@@ -12,7 +12,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 // Routes requires
-
+const sales = require('../app/routes/sales.routes');
 
 // Express initialization
 const app = express();
@@ -21,7 +21,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // Routes addition
-
+sales(app);
 
 // Application export to server.js
 module.exports = app;
