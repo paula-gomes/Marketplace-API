@@ -18,10 +18,10 @@ module.exports = (app) => {
   app.get('/sales', salesController.listAll());
 
   // List of purchases made by an specific user
-  app.get('/sales/:userId', salesController.listUserPurchases());
+  app.get('/sales/users/:userId', salesController.listUserPurchases());
 
   // List of sales of an specific product
-  app.get('/sales/:productId', salesController.listProductSales());
+  app.get('/sales/products/:productId', salesController.listProductSales());
 
   // Insertion of a new sale
   app.post('/sales/newSale/:userId/:productId', salesController.insertNew());
