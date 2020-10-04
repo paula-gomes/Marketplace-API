@@ -9,7 +9,7 @@ class SalesController {
     return (req,res) => {
       this._salesDAO.getAll()
         .then(sales => {
-
+          res.send(sales);
         })
         .catch(err => console.log(err));
     }
@@ -20,17 +20,47 @@ class SalesController {
 
       const { userId } = req.params;
 
-      this._salesDAO.getAll(userId)
+      this._salesDAO.getUser( [userId] )
         .then(sales => {
-
+          res.send(sales);
         })
         .catch(err => console.log(err));
     }
   }
 
-  listProductSales() {}
+  listProductSales() {
+    return (req,res) => {
 
-  insertNew() {}
+      const { productId } = req.params;
 
-  cancelSale() {}
+      this._salesDAO.getProduct( [productId] )
+        .then(sales => {
+          res.send(sales);
+        })
+        .catch(err => console.log(err));
+    }
+  }
+
+  insertNew() {
+    return (req,res) => {
+      const {
+        userId,
+        productId
+      } = req.params;
+
+      this._salesDAO.post( [ userId , productId ] )
+      .then( successMsg => res.send(successMsg))
+      .catch( err => console.log(err));
+    }
+  }
+
+  cancelSale() {
+    return (req,res) => {
+      const { saleId } = req.params;
+
+      this._salesDAO.delete( [saleId] )
+      .then( successMsg => res.send(successMsg))
+      .catch( err => console.log(err));
+    }
+  }
 }
