@@ -36,7 +36,7 @@ module.exports = {
 
   SALES: `
     CREATE TABLE IF NOT EXISTS sales (
-      id INT PRIMARY KEY AUTOINCREMENT,
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
       product_id INT,
       user_id INT,
       FOREIGN KEY(product_id) REFERENCES products(id),
