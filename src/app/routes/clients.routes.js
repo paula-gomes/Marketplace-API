@@ -6,7 +6,7 @@ module.exports = (app) => {
 
     app.get('/clients/:id', clientController.getOneClient());
 
-    app.post('/clients', clientController.addClient());
+    app.post('/clients/add', clientController.addClient());
 
     app.put('/clients/:id',clientController.updateClient());
 

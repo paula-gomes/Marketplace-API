@@ -23,7 +23,7 @@ class ClientController {
     static addClient() {
 
         return ((req, res) => {
-            const params = [req.body.name, req.body.email, req.body.pwrd, req.body.cpf, req.body.phone, req.body.adress];
+            const params = [req.body.name, req.body.email, req.body.pwrd, req.body.cpf, req.body.phone, req.body.address];
             ClientModel.addClient(...params)
                 .then(() => res.send('Add client ok'))
                 .catch((err) => console.log('Request failed to add Client' + err))
