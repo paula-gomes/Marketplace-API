@@ -7,8 +7,8 @@ class ProvidersModel{
     static getProviders(){
         return providersDAO.getProviders();
     }
-    static getProvider(id){
-        return providersDAO.getProvider(id);
+    static getSingleProvider(id){
+        return providersDAO.getSingleProvider(id);
     }
     static postProvider(req){
         return providersDAO.postProvider(req);

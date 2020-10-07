@@ -15,7 +15,7 @@ class ProvidersDAO{
         });
     };
 
-    getProvider(id){
+    getSingleProvider(id){
         return new Promise((resolve, reject) =>{
         this._db.all('SELECT * FROM suppliers where id=?',[id],(err,rows)=>{
             if (err){

@@ -16,7 +16,7 @@ class ProvidersController{
 
         static oneProvider(){
             return function(req,res){
-                ProvidersModel.getProvider(req)
+                ProvidersModel.getSingleProvider(req)
                 .then(provider =>{
                     res.send(provider)
             })
