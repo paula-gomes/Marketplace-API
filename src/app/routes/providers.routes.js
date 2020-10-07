@@ -1,19 +1,15 @@
+const ProvidersController = require("../controllers/ProvidersController");
 
 const routesProviders = (app)=>{
-    app.get('/providers', (req, resp)=>{
-    });
+    app.get('/providers', ProvidersController.listProviders() );
 
-    app.get('/providers/:idprovider', (req, resp)=>{ 
-    });
+    app.get('/providers/:idprovider', ProvidersController.oneProvider() );
 
-    app.post('/providers/:idprovider', (req, resp)=>{ 
-    });
+    app.post('/providers/:idprovider', ProvidersController.insertProvider());
 
-    app.put('/providers/:idprovider', (req, resp)=>{ 
-    });
+    app.put('/providers/:idprovider',ProvidersController.modifyProvider());
 
-    app.delete('/providers/:idprovider', (req, resp)=>{ 
-    });
+    app.delete('/providers/:idprovider', ProvidersController.cancelProvider() );
     
 };
 
