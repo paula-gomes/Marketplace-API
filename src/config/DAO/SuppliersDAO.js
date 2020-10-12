@@ -1,13 +1,13 @@
-class ProvidersDAO{
+class SuppliersDAO{
     constructor(db) {
         this._db = db;
       }
 
-    getProviders(){
+    getAll(){
         return new Promise((resolve, reject) =>{
         this._db.all('SELECT * FROM suppliers',(err,rows)=>{
             if (err){
-                reject(`not able to show providers${err}`);
+                reject(`not able to show suppliers${err}`);
             };
                 resolve(rows);
         });
@@ -15,11 +15,11 @@ class ProvidersDAO{
         });
     };
 
-    getSingleProvider(id){
+    getSingle(id){
         return new Promise((resolve, reject) =>{
         this._db.all('SELECT * FROM suppliers where id=?',[id],(err,rows)=>{
             if (err){
-                reject(`not able to show providers${err}`);
+                reject(`not able to show suppliers${err}`);
             };
                 resolve(rows);
         });
@@ -27,22 +27,22 @@ class ProvidersDAO{
         });
     };
 
-    postProvider(req){
+    post(req){
         return new Promise((resolve, reject) =>{
         this._db.run('INSERT INTO suppliers (trading_name, phone, company_name, cnpj, address) VALUES(?,?,?,?,?)',[req.body.trading_name, req.body.phone, req.body.company_name, req.body.cnpj, req.body.address],(err)=>{
             if (err){
-                reject(`not able to insert provider${err}`);
+                reject(`not able to insert supplier${err}`);
             }
             resolve(`Success insert `)
         });
             
         });
     };
-    deleteProvider(id){
+    delete(id){
         return new Promise((resolve, reject) =>{
         this._db.run('DELETE FROM suppliers where id=?',[id],(err)=>{
             if (err){
-                reject(`not able to delete provider${err}`);
+                reject(`not able to delete supplier${err}`);
             }
             resolve(`Success delete `)
 
@@ -51,11 +51,11 @@ class ProvidersDAO{
         });
     };
 
-    replaceProvider(id){
+    put(req){
         return new Promise((resolve, reject) =>{
-        this._db.run('UPDATE suppliers SET trading_name = ?, phone = ?, company_name = ?, cnpj = ?, address = ? WHERE id=?',[req.body.trading_name, req.body.phone, req.body.company_name, req.body.cnpj, req.body.address, req.body.id],(err)=>{
+        this._db.run('UPDATE suppliers SET trading_name = ?, phone = ?, company_name = ?, cnpj = ?, address = ? WHERE id=?',[req.body.trading_name, req.body.phone, req.body.company_name, req.body.cnpj, req.body.address, req.params.id],(err)=>{
             if (err){
-                reject(`not able to update provider${err}`);
+                reject(`not able to update supplier${err}`);
             }
             resolve(`Success replace `)
 
@@ -66,4 +66,4 @@ class ProvidersDAO{
 };
 
 
-module.exports = ProvidersDAO;
+module.exports = SuppliersDAO;

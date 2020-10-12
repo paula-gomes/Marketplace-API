@@ -9,11 +9,11 @@ const app = require('./config/custom-express');
 
 const clientsRoutes = require ('./app/routes/clients.routes');
 const salesRoutes = require('./app/routes/sales.routes');
-const providersRoutes = require('./app/routes/providers.routes');
+const suppliersRoutes = require('./app/routes/suppliers.routes');
 
 clientsRoutes(app);
 salesRoutes(app);
-providersRoutes(app);
+suppliersRoutes(app);
 
 // Other variables
 const PORT = process.env.PORT || 8080;
