@@ -1,4 +1,4 @@
-const ProvidersModel= require('../../config/models/ProvidersModel');//import class
+const ProvidersModel= require('../models/ProvidersModel');//import class
 
 class ProvidersController{
         constructor(){

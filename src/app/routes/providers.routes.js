@@ -5,7 +5,7 @@ const routesProviders = (app)=>{
 
     app.get('/providers/:idprovider', ProvidersController.oneProvider() );
 
-    app.post('/providers/:idprovider', ProvidersController.insertProvider());
+    app.post('/providers/newProvider', ProvidersController.insertProvider());
 
     app.put('/providers/:idprovider',ProvidersController.modifyProvider());
 

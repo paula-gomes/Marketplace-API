@@ -14,8 +14,11 @@ module.exports = {
   SUPPLIERS: `
   CREATE TABLE IF NOT EXISTS suppliers (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name VARCHAR(120) NOT NULL,
-    phone VARCHAR(9) NOT NULL
+    trading_name VARCHAR(120) NOT NULL,
+    phone VARCHAR(9) NOT NULL,
+    company_name VARCHAR(120) NOT NULL,
+    cnpj CHAR(14) NOT NULL,
+    address TEXT NOT NULL
   )
 `,
 
