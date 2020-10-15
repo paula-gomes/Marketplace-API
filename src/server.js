@@ -6,6 +6,7 @@
 
 // Application import
 const app = require('./config/custom-express');
+const db = require('./config/database/database');
 
 const clientsRoutes = require('./app/routes/clients.routes');
 const productsRoutes = require('./app/routes/products.routes');
@@ -21,4 +22,8 @@ suppliersRoutes(app);
 const PORT = process.env.PORT || 8080;
 
 // Server initialization
+db.connect()
+  .then(() => console.log('Database connected!'))
+  .catch(err => console.error(err));
+
 app.listen(PORT, () => console.log(`Server Running on port ${PORT}`));

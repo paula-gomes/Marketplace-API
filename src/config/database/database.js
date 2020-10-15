@@ -1,11 +1,9 @@
-const sqlite = require('sqlite3').verbose();
-const db = new sqlite.Database('./src/config/database/data.sqlite');
+const { Pool } = require('pg');
+const pool = new Pool({ connectionString: process.env.DATABASE_URL || "postgres://bdliqkxv:K7GY-YQKYz0MCF3CR5G5bdZnRP5Kpops@tuffi.db.elephantsql.com:5432/bdliqkxv"});
 
-process.on('SIGINT', () => 
-  db.close(() => {
-    console.log('Database connection terminated');
-    process.exit(0);
-  })
-);
+process.on('SIGINT', () => {
+  console.log('\nDatabase connection terminated');
+  process.exit(0);
+});
 
-module.exports = db;
+module.exports = pool;

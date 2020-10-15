@@ -1,68 +1,27 @@
+const db = require('../../config/database/database');
+
 class SuppliersDAO{
-    constructor(db) {
-        this._db = db;
-      }
 
-    getAll(){
-        return new Promise((resolve, reject) =>{
-        this._db.all('SELECT * FROM suppliers',(err,rows)=>{
-            if (err){
-                reject(`not able to show suppliers${err}`);
-            };
-                resolve(rows);
-        });
-            
-        });
+    static getAll(query){
+        return db.query(query);
     };
 
-    getSingle(id){
-        return new Promise((resolve, reject) =>{
-        this._db.all('SELECT * FROM suppliers where id=?',[id],(err,rows)=>{
-            if (err){
-                reject(`not able to show suppliers${err}`);
-            };
-                resolve(rows);
-        });
-            
-        });
+    static getSingle(query){
+        return db.query(query);
     };
 
-    post(req){
-        return new Promise((resolve, reject) =>{
-        this._db.run('INSERT INTO suppliers (trading_name, phone, company_name, cnpj, address) VALUES(?,?,?,?,?)',[req.body.trading_name, req.body.phone, req.body.company_name, req.body.cnpj, req.body.address],(err)=>{
-            if (err){
-                reject(`not able to insert supplier${err}`);
-            }
-            resolve(`Success insert `)
-        });
-            
-        });
-    };
-    delete(id){
-        return new Promise((resolve, reject) =>{
-        this._db.run('DELETE FROM suppliers where id=?',[id],(err)=>{
-            if (err){
-                reject(`not able to delete supplier${err}`);
-            }
-            resolve(`Success delete `)
-
-        });
-            
-        });
+    static post(query){
+        return db.query(query);
     };
 
-    put(req){
-        return new Promise((resolve, reject) =>{
-        this._db.run('UPDATE suppliers SET trading_name = ?, phone = ?, company_name = ?, cnpj = ?, address = ? WHERE id=?',[req.body.trading_name, req.body.phone, req.body.company_name, req.body.cnpj, req.body.address, req.params.id],(err)=>{
-            if (err){
-                reject(`not able to update supplier${err}`);
-            }
-            resolve(`Success replace `)
-
-        });
-            
-        });
+    static put(query){
+        return db.query(query);
     };
+    
+    static delete(query){
+        return db.query(query);
+    };
+
 };
 
 

@@ -1,4 +1,3 @@
-const { response } = require('../../config/custom-express');
 const SuppliersModel = require('../models/SuppliersModel'); //import class
 
 class SuppliersController {
@@ -6,52 +5,49 @@ class SuppliersController {
         throw ('erro')
     }
     static listAll() {
-        return function (req, res) {
+        return  (req, res) => {
             SuppliersModel.getAll()
                 .then(suppliers => {
-                    res.send(suppliers)
+                    res.send(suppliers.rows)
                 })
                 .catch(err => console.log(err));
         }
     }
 
     static listOne() {
-        return function (req, res) {
-            SuppliersModel.getSingle(req.params.id)
+        return (req, res) => {
+            SuppliersModel.getSingle(req)
                 .then(supplier => {
-                    res.send(supplier)
+                    res.send(supplier.rows)
                 })
                 .catch(err => console.log(err));
         }
     }
     static insertNew() {
-        return function (req, res) {
+        return (req, res) => {
             SuppliersModel.post(req)
-                .then(supplier => {
-                    console.log(supplier);
-                    res.send(supplier);
+                .then( () => {
+                    res.send('Supplier added!');
                 })
                 .catch(err => console.log(err));
         }
     }
 
     static modify() {
-        return function (req, res) {
+        return (req, res) => {
             SuppliersModel.put(req)
-                .then(supplier => {
-                    console.log(supplier);
-                    res.send(supplier);
+                .then( () => {
+                    res.send('Supplier modified!');
                 })
-                .catch(err => console.log(err));
+                .catch(err => res.send(err.message));
         }
 
     }
     static cancel() {
-        return function (req, res) {
-            SuppliersModel.delete(req.params.id)
-                .then(supplier => {
-                    console.log(supplier);
-                    res.send(supplier);
+        return (req, res) => {
+            SuppliersModel.delete(req)
+                .then( () => {
+                    res.send('Supplier deleted!');
                 })
                 .catch(err => console.log(err));
         }

@@ -1,3 +1,4 @@
+const { response } = require('express');
 const ClientModel = require('../models/ClientsModel');
 
 class ClientController {
@@ -6,45 +7,43 @@ class ClientController {
 
         return ((req, res) => {
             ClientModel.getAllClients()
-                .then((row) => res.send(row))
-                .catch((err) => console.log('Request failed to return all clients' + err));
+                .then(response => res.send(response.rows))
+                .catch((err) => console.log('Request failed to return all clients\n' + err));
         });
     }
 
     static getOneClient() {
 
         return ((req, res) => {
-            ClientModel.getOneClient(req.params.id)
-                .then(() => res.send('Get one client ok'))
-                .catch((err) => console.log('Request failed to return one client' + err))
+            ClientModel.getOneClient(req)
+                .then(response => res.send(response.rows))
+                .catch((err) => console.log('Request failed to return one client\n' + err))
         });
     }
 
     static addClient() {
 
         return ((req, res) => {
-            const params = [req.body.name, req.body.email, req.body.pwrd, req.body.cpf, req.body.phone, req.body.address];
-            ClientModel.addClient(...params)
-                .then(() => res.send('Add client ok'))
-                .catch((err) => console.log('Request failed to add Client' + err))
+            ClientModel.addClient(req)
+                .then(() => res.send('Client added!'))
+                .catch((err) => console.log('Request failed to add Client\n' + err))
         });
     }
 
     static updateClient() {
         return ((req, res) => {
-            const params = [req.body.name, req.body.email, req.body.pwrd, req.body.cpf, req.body.phone, req.body.address, req.params.id];
-            ClientModel.updateClient(...params)
-                .then(() => res.send('Client updated'))
-                .catch((err) => console.log('Request failed to update Client' + err))
+            ClientModel.updateClient(req)
+                .then(() => res.send('Client updated!'))
+                .catch((err) => console.log('Request failed to update Client\n' + err))
         });
     }
 
     static deleteClient() {
 
         return ((req, res) => {
-            ClientModel.deleteClient(req.params.id)
-                .then(() => res.send('Client deleted'))
-                .catch((err) => console.log('Request failed to delete Client' + err))
+            ClientModel.deleteClient(req)
+                .then(() => res.send('Client deleted!'))
+                .catch((err) => console.log('Request failed to delete Client\n' + err))
         });
     }    
 }
