@@ -1,90 +1,33 @@
-
+const db = require('../../config/database/database');
 class ClientDao {
 
-    constructor(db) {
-        this._db = db;
+    static getAllClients(query) {
+        return db.query(query);
     }
 
-    getAllClients() {
-
-        return new Promise((resolve, reject) => {
-
-            this._db.all(`SELECT * FROM users`, [], (err, row) => {
-                if (err) {
-                    return reject(`not able to show clients ${err}`);
-                }
-                    return resolve(row);
-            })
-        })
+    static getOneClient(query) {
+        return db.query(query);
     }
 
-    getOneClient(id) {
-
-        return new Promise((resolve, reject) => {
-
-            this._db.all(`SELECT * FROM users where id= ?`, [id], (err, row) => {
-                if (err) {
-                    return reject(`not able to find client ${err}`);
-                }
-                    return resolve(row);
-            })
-        })
+    static addClient(query) {
+        return db.query(query);
     }
 
-    addClient(name, email, pwrd, cpf, phone, address) {
-
-        return new Promise((resolve, reject) => {
-
-            this._db.run(
-                `INSERT INTO users(name,email,pwrd,cpf,phone,address) VALUES (?,?,?,?,?,?)`,
-                [name, email, pwrd, cpf, phone, address],
-                (err) => {
-                    if (err) {
-                        return reject(`not able to add client ${err}`)
-                    }
-                        return resolve();
-                });
-
-        });
+    static updateClient(query) {
+        return db.query(query);
     }
 
-    updateClient(name, email, password, cpf, phone, address, id) {
-
-        return new Promise((resolve, reject) => {
-
-            this._db.run(
-                `UPDATE users SET 
-					name=?, 
-					email=?, 
-					pwrd=?, 
-					cpf=?, 
-					phone=?, 
-					address=? 
-					WHERE id=?`,
-                [name, email, password, cpf, phone, address, id],
-                (err) => {
-                    if (err) {
-                        return reject(`not able to modify client ${err}`)
-                    }
-                        return resolve();
-                });
-
-        });
-    }
-
-    deleteClient(id) {
-
-        return new Promise((resolve, reject) => {
-
-            this._db.run(`DELETE FROM users where id= ?`, [id],
-                (err) => {
-                    if (err) {
-                        return reject(`not able to delete client ${err}`);
-                    }
-                        return resolve();
-                })
-        });
+    static deleteClient(query) {
+        return db.query(query);
     }
 };
 
 module.exports = ClientDao;
+
+// class SalesDAO {
+//   static execute(query) {
+//     return db.query(query);
+//   }
+// }
+
+// module.exports = SalesDAO;
