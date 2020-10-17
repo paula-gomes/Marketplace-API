@@ -5,7 +5,7 @@ module.exports = {
       name VARCHAR(80) NOT NULL,
       email VARCHAR(120) NOT NULL,
       pwrd TEXT NOT NULL,
-      cpf CHAR(9) NOT NULL,
+      cpf CHAR(11) NOT NULL,
       phone VARCHAR(9),
       address TEXT NOT NULL
     )

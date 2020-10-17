@@ -1,15 +1,15 @@
-const clientController = require('../controllers/ClientsController');
+const ClientController = require('../controllers/ClientsController');
 
 module.exports = (app) => {
 
-    app.get('/clients', clientController.getAllClients());
+    app.get('/clients', ClientController.getAllClients());
 
-    app.get('/clients/:id', clientController.getOneClient());
+    app.get('/clients/:id', ClientController.getOneClient());
 
-    app.post('/clients/add', clientController.addClient());
+    app.post('/clients/add', ClientController.addClient());
 
-    app.put('/clients/:id',clientController.updateClient());
+    app.put('/clients/:id',ClientController.updateClient());
 
-    app.delete('/clients/:id',clientController.deleteClient());
+    app.delete('/clients/:id',ClientController.deleteClient());
 
 };

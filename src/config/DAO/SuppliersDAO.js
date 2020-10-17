@@ -1,68 +1,77 @@
-class SuppliersDAO{
-    constructor(db) {
-        this._db = db;
-      }
+const db = require('../../config/database/database');
 
-    getAll(){
-        return new Promise((resolve, reject) =>{
-        this._db.all('SELECT * FROM suppliers',(err,rows)=>{
-            if (err){
-                reject(`not able to show suppliers${err}`);
-            };
-                resolve(rows);
-        });
-            
-        });
-    };
+class SuppliersDAO {
 
-    getSingle(id){
-        return new Promise((resolve, reject) =>{
-        this._db.all('SELECT * FROM suppliers where id=?',[id],(err,rows)=>{
-            if (err){
-                reject(`not able to show suppliers${err}`);
-            };
-                resolve(rows);
-        });
-            
-        });
-    };
+	static getAll() {
+		const QUERY = `
+			SELECT
+				*
+			FROM
+				suppliers;`;
 
-    post(req){
-        return new Promise((resolve, reject) =>{
-        this._db.run('INSERT INTO suppliers (trading_name, phone, company_name, cnpj, address) VALUES(?,?,?,?,?)',[req.body.trading_name, req.body.phone, req.body.company_name, req.body.cnpj, req.body.address],(err)=>{
-            if (err){
-                reject(`not able to insert supplier${err}`);
-            }
-            resolve(`Success insert `)
-        });
-            
-        });
-    };
-    delete(id){
-        return new Promise((resolve, reject) =>{
-        this._db.run('DELETE FROM suppliers where id=?',[id],(err)=>{
-            if (err){
-                reject(`not able to delete supplier${err}`);
-            }
-            resolve(`Success delete `)
+		return db.query(QUERY);
+	};
 
-        });
-            
-        });
-    };
+	static getSingle( valuesArr ) {
+		const QUERY = {
+			text: `
+				SELECT
+					*
+				FROM
+					suppliers
+				WHERE
+					id = $1;`,
+			values: valuesArr
+		};
 
-    put(req){
-        return new Promise((resolve, reject) =>{
-        this._db.run('UPDATE suppliers SET trading_name = ?, phone = ?, company_name = ?, cnpj = ?, address = ? WHERE id=?',[req.body.trading_name, req.body.phone, req.body.company_name, req.body.cnpj, req.body.address, req.params.id],(err)=>{
-            if (err){
-                reject(`not able to update supplier${err}`);
-            }
-            resolve(`Success replace `)
+		return db.query(QUERY);
+	};
 
-        });
-            
-        });
-    };
+	static post( valuesArr ) {
+		const QUERY = {
+			text: `
+				INSERT INTO suppliers
+					( trading_name , phone , company_name , cnpj , address )
+				VALUES
+					( $1 , $2 , $3 , $4 , $5 );`,
+			values: valuesArr
+		};
+
+		return db.query(QUERY);
+	};
+
+	static put( valuesArr ) {
+		const QUERY = {
+			text: `
+				UPDATE
+					suppliers
+				SET
+					trading_name = $1,
+					phone = $2,
+					company_name = $3,
+					cnpj = $4,
+					address = $5
+				WHERE
+					id = $6;`,
+			values: valuesArr
+		};
+
+		return db.query(QUERY);
+	};
+
+	static delete( valuesArr ) {
+		const QUERY = {
+			text: `
+				DELETE FROM
+					suppliers
+				WHERE
+					id = $1;`,
+			values: valuesArr
+		};
+		
+		return db.query(QUERY);
+	};
+
 };
 
 
