@@ -5,7 +5,7 @@ class ClientModel {
 	static getAllClients() {
 		
 
-		return ClientDAO.getAllClients(QUERY);
+		return ClientDAO.getAllClients();
 	}
 
 	static getOneClient(req) {
