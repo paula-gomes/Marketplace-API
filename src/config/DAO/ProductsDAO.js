@@ -1,106 +1,108 @@
+const db = require('../../config/database/database');
+
 class ProductDao {
-	constructor(db) {
-		this._db = db;
+
+	static getAllProducts() {
+		const QUERY = `
+			SELECT
+				*
+			FROM
+				products;`;
+
+		return db.query(QUERY);
 	}
 
-	getAllProducts() {
-		return new Promise((resolve, reject) => {
-			this._db.all(`SELECT * FROM products`, (err, rows) => {
-				if (err) {
-					return reject(`not able to show products. Error: ${err}`);
-				}
-				return resolve(rows);
-			});
-		});
+	static getOneProduct( valuesArr ) {
+		const QUERY = {
+			text: `
+				SELECT
+					*
+				FROM
+					products
+				WHERE
+					id = $1;`,
+			values: valuesArr
+		};
+
+		return db.query(QUERY);
 	}
 
-	getAllProductsFromSupplier(supplier_id) {
-		return new Promise((resolve, reject) => {
-			this._db.all(
-				`SELECT * FROM products WHERE supplier_id = ?`,
-				[supplier_id],
-				(err, rows) => {
-					if (err) {
-						return reject(`not able to show products. Error: ${err}`);
-					}
-					return resolve(rows);
-				}
-			);
-		});
+	static getAllProductsFromSupplier( valuesArr ) {
+		const QUERY = {
+			text: `
+				SELECT
+					*
+				FROM
+					products
+				WHERE
+					supplier_id = $1;`,
+			values: valuesArr
+		};
+
+		return db.query(QUERY);
 	}
 
-	getOneProductFromSupplier(id, supplier_id) {
-		return new Promise((resolve, reject) => {
-			this._db.all(
-				`SELECT * FROM products WHERE id = ? AND supplier_id = ?`,
-				[id, supplier_id],
-				(err, row) => {
-					if (err) {
-						return reject(`not able to show products. Error: ${err}`);
-					}
-					return resolve(row);
-				}
-			);
-		});
+	static getOneProductFromSupplier( valuesArr ) {
+		const QUERY = {
+			text: `
+				SELECT
+					*
+				FROM
+					products
+				WHERE
+					id = $1 AND
+					supplier_id = $2;`,
+			values: valuesArr
+		};
+
+		return db.query(QUERY);
 	}
 
-	getOneProduct(id) {
-		return new Promise((resolve, reject) => {
-			this._db.all(`SELECT * FROM products WHERE id = ?`, [id], (err, row) => {
-				if (err) {
-					return reject(`not able to show product. Error: ${err}`);
-				}
-				return resolve(row);
-			});
-		});
+
+	static addProduct( valuesArr ) {
+		const QUERY = {
+			text: `
+				INSERT INTO products
+					(rating, name, description, price, in_stock, supplier_id)
+				VALUES
+					( $1 , $2 , $3 , $4 , $5 , $6 );`,
+			values: valuesArr
+		};
+
+		return db.query(QUERY);
 	}
 
-	addProduct(rating, name, description, price, in_stock, supplier_id) {
-		return new Promise((resolve, reject) => {
-			this._db.run(
-				`INSERT INTO products(rating, name, description, price, in_stock, supplier_id) VALUES (?, ?, ?, ?, ?, ?)`,
-				[rating, name, description, price, in_stock, supplier_id],
-				(err) => {
-					if (err) {
-						return reject(`not able to add product. Error: ${err}`);
-					}
-					return resolve(`product added successfully`);
-				}
-			);
-		});
+	static updateProduct( valuesArr ) {
+		const QUERY = {
+			text: `
+				UPDATE
+					products
+				SET
+					rating = $1,
+					name = $2,
+					description = $3,
+					price = $4,
+					in_stock = $5,
+					supplier_id = $6
+				WHERE
+					id = $7;`,
+			values: valuesArr
+		};
+
+		return db.query(QUERY);
 	}
 
-	updateProduct(rating, name, description, price, in_stock, supplier_id, id) {
-		return new Promise((resolve, reject) => {
-			this._db.run(
-				`UPDATE products SET 
-				rating = ?,
-				name = ?,
-				description = ?,
-				price = ?,
-				in_stock = ?,
-				supplier_id = ?
-				WHERE id = ?`,
-				[rating, name, description, price, in_stock, supplier_id, id],
-				(err) => {
-					if (err) {
-						return reject(`not able to update product. Error: ${err}`);
-					}
-					return resolve(`product updated successfully`);
-				}
-			);
-		});
-	}
+	static deleteProduct( valuesArr ) {
+		const QUERY = {
+			text: `
+				DELETE FROM
+					products
+				WHERE
+					id = $1;`,
+			values: valuesArr
+		};
 
-	deleteProduct(id) {
-		return new Promise((resolve, reject) => {
-			this._db.run(`DELETE FROM products WHERE id = ?`, [id], (err) => {
-				if (err) {
-					return reject(`not able to dele product. Error: ${err}`);
-				}
-				return resolve(`product deleted successfully`);
-			});
-		});
+		return db.query(QUERY);
 	}
 }
 
