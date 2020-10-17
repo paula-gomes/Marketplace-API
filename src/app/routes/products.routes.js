@@ -1,23 +1,17 @@
-const productController = require('../controllers/ProductsController');
+const ProductController = require('../controllers/ProductsController');
 
 module.exports = (app) => {
-	app.get('/products', productController.getAllProducts());
+	app.get( '/products', ProductController.getAllProducts() );
 
-	app.get('/products/:id', productController.getOneProduct());
+	app.get( '/products/:id', ProductController.getOneProduct() );
 
-	app.get(
-		'/products-from-supplier/:supplier_id',
-		productController.getAllProductsFromSupplier()
-	);
+	app.get( '/products/supplier/:supplier_id', ProductController.getAllProductsFromSupplier() );
 
-	app.get(
-		'/one-product-from-supplier/:id/:supplier_id',
-		productController.getOneProductFromSupplier()
-	);
+	app.get( '/products/supplier/:supplier_id/:id', ProductController.getOneProductFromSupplier() );
 
-	app.post('/products', productController.addProduct());
+	app.post( '/products', ProductController.addProduct() );
 
-	app.put('/products/:id', productController.updateProduct());
+	app.put( '/products/:id', ProductController.updateProduct() );
 
-	app.delete('/products/:id', productController.deleteProduct());
+	app.delete( '/products/:id', ProductController.deleteProduct() );
 };
