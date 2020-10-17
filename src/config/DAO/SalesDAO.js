@@ -1,100 +1,71 @@
+const db = require('../../config/database/database');
+
 class SalesDAO {
-  constructor(db) {
-    this._db = db;
+  constructor() {
+    throw new Error('This class has no instance');
   }
 
-  getAll() {
+  static getAll() {
     const QUERY = `
-      SELECT
-        *
-      FROM
-        sales
-    `;
+    SELECT
+      *
+    FROM
+      sales;`;
 
-    return new Promise((resolve,reject) => {
-      this._db.all(QUERY, (err,res) => {
-        if (err)
-          return reject(`Unable to list sales \n Error: ${err}`);
-
-        return resolve(res);
-      })
-    })
+    return db.query(QUERY);
   }
 
-  getUser(user) {
-    const QUERY = `
-      SELECT
-        *
-      FROM
-        sales
-      WHERE
-        user_id = ?;
-    `;
+  static getUser( valuesArr ) {
+    const QUERY = {
+      text: `
+        SELECT
+          *
+        FROM
+          sales
+        WHERE
+          user_id = $1;`,
+      values: valuesArr
+    };
 
-    return new Promise((resolve,reject) => {
-      this._db.all(QUERY, user, (err,res) => {
-        if (err)
-          return reject(`Unable to list purchases. \n Error: ${err}`);
-
-        return resolve(res);
-      })
-    })
+    return db.query(QUERY);
   }
+  static getProduct( valuesArr ) {
+    const QUERY = {
+      text: `
+        SELECT
+          *
+        FROM
+          sales
+        WHERE
+          product_id = $1;`,
+      values: valuesArr
+    };
 
-  getProduct(product) {
-    const QUERY = `
-      SELECT
-        *
-      FROM
-        sales
-      WHERE
-        product_id = ?;
-    `;
-
-    return new Promise((resolve,reject) => {
-      this._db.all(QUERY, product, (err,res) => {
-        if (err)
-          return reject(`Unable to list sales. \n Error: ${err}`);
-
-        return resolve(res);
-      })
-    })
+    return db.query(QUERY);
   }
+  static post( valuesArr ) {
+    const QUERY = {
+      text: `
+        INSERT INTO sales
+          ( user_id , product_id )
+        VALUES
+          ( $1 , $2 );`,
+      values: valuesArr
+    };
 
-  post(purchase) {
-    const QUERY = `
-      INSERT INTO
-        sales (user_id,product_id)
-      VALUES
-        ( ? , ? );
-    `;
-
-    return new Promise((resolve,reject) => {
-      this._db.run(QUERY, purchase, err => {
-        if (err)
-          return reject(`Unable to complete the sale. \n Error: ${err}`);
-
-        return resolve('Sale successfull!');
-      })
-    })
+    return db.query(QUERY);
   }
+  static delete( valuesArr ) {
+    const QUERY = {
+      text: `
+        DELETE FROM
+          sales
+        WHERE
+          id = $1;`,
+      values: valuesArr
+    };
 
-  delete(sale) {
-    const QUERY = `
-      DELETE FROM
-        sales
-      WHERE
-        id = ?;
-    `;
-
-    return new Promise((resolve,reject) => {
-      this._db.run(QUERY, sale, err => {
-        if (err)
-          return reject(`Unable to cancel sale. \n Error: ${err}`);
-
-        return resolve('Sale canceled');
-      })
-    })
+    return db.query(QUERY);
   }
 }
 

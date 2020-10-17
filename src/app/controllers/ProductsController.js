@@ -1,85 +1,61 @@
 const ProductModel = require('../models/ProductsModel');
 
 class ProductController {
+	
 	static getAllProducts() {
 		return (req, res) => {
 			ProductModel.getAllProducts()
-				.then((row) => res.send(row))
-				.catch((err) =>
-					console.log('Request failed to return all products' + err)
-				);
-		};
-	}
-
-	static getAllProductsFromSupplier() {
-		return (req, res) => {
-			ProductModel.getAllProductsFromSupplier(req.params.supplier_id)
-				.then((rows) => res.send(rows))
-				.catch((err) =>
-					console.log('Request failed to return all products' + err)
-				);
-		};
-	}
-
-	static getOneProductFromSupplier() {
-		return (req, res) => {
-			ProductModel.getOneProductFromSupplier(
-				req.params.id,
-				req.params.supplier_id
-			)
-				.then((row) => res.send(row))
-				.catch((err) => console.log('Request failed to return products' + err));
+				.then( response => res.send(response.rows))
+				.catch( error => console.log('Request failed to return all products\n' + error) );
 		};
 	}
 
 	static getOneProduct() {
 		return (req, res) => {
-			ProductModel.getOneProduct(req.params.id)
-				.then((row) => res.send(row))
-				.catch((err) =>
-					console.log('Request failed to return one product' + err)
-				);
+			ProductModel.getOneProduct(req)
+				.then( response => res.send(response.rows))
+				.catch( error => console.log('Request failed to return one product\n' + error) );
 		};
 	}
 
+	static getAllProductsFromSupplier() {
+		return (req, res) => {
+			ProductModel.getAllProductsFromSupplier(req)
+				.then( response => res.send(response.rows))
+				.catch( error => console.log('Request failed to return all products\n' + error) );
+		};
+	}
+
+	static getOneProductFromSupplier() {
+		return (req, res) => {
+			ProductModel.getOneProductFromSupplier(req)
+				.then( response => res.send(response.rows))
+				.catch( error => console.log('Request failed to return products\n' + error));
+		};
+	}
+
+
 	static addProduct() {
 		return (req, res) => {
-			const params = [
-				req.body.rating,
-				req.body.name,
-				req.body.description,
-				req.body.price,
-				req.body.in_stock,
-				req.body.supplier_id,
-			];
-			ProductModel.addProduct(...params)
-				.then(() => res.send('Add product ok'))
-				.catch((err) => console.log('Request failed to add Product' + err));
+			ProductModel.addProduct(req)
+				.then(() => res.send('Product added!'))
+				.catch( error => console.log('Request failed to add Product\n' + error));
 		};
 	}
 
 	static updateProduct() {
 		return (req, res) => {
-			const params = [
-				req.body.rating,
-				req.body.name,
-				req.body.description,
-				req.body.price,
-				req.body.in_stock,
-				req.body.supplier_id,
-				req.params.id,
-			];
-			ProductModel.updateProduct(...params)
-				.then(() => res.send('Product updated'))
-				.catch((err) => console.log('Request failed to update Product' + err));
+			ProductModel.updateProduct(req)
+				.then(() => res.send('Product updated!'))
+				.catch( error => console.log('Request failed to update Product\n' + error));
 		};
 	}
 
 	static deleteProduct() {
 		return (req, res) => {
-			ProductModel.deleteProduct(req.params.id)
-				.then(() => res.send('Product deleted'))
-				.catch((err) => console.log('Request failed to delete Product' + err));
+			ProductModel.deleteProduct(req)
+				.then(() => res.send('Product deleted!'))
+				.catch( error => console.log('Request failed to delete Product\n' + error));
 		};
 	}
 }
