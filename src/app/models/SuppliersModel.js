@@ -2,7 +2,7 @@ const SuppliersDAO = require('../../config/DAO/SuppliersDAO');
 
 class SuppliersModel {
 	static getAll() {
-		return SuppliersDAO.getAll(QUERY);
+		return SuppliersDAO.getAll();
 	}
 
 	static getSingle(req) {
