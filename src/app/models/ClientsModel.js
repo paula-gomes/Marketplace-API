@@ -1,29 +1,53 @@
-const dataClientDao = require('../../config/DAO/ClientsDAO');
-const db = require('../../config/database/database');
-
-const instanceDao = new dataClientDao(db);
+const ClientDAO = require('../../config/DAO/ClientsDAO');
 
 class ClientModel {
 
-    static getAllClients() {
-        return instanceDao.getAllClients();
-    }
+	static getAllClients() {
+		
 
-    static getOneClient(id) {
-        return instanceDao.getOneClient(id);
-    }
+		return ClientDAO.getAllClients();
+	}
 
-    static addClient(name, email, password, cpf, phone, address) {
-        return instanceDao.addClient(name, email, password, cpf, phone, address);
-    }
+	static getOneClient(req) {
+		const {
+			id
+		} = req.params;
 
-    static updateClient(name, email, password, cpf, phone, address, id) {
-        return instanceDao.updateClient(name, email, password, cpf, phone, address, id);
-    }
+		return ClientDAO.getOneClient( [ id ] );
+	}
 
-    static deleteClient(id) {
-        return instanceDao.deleteClient(id);
-    }
+	static addClient(req) {
+		const {
+			name,
+			email,
+			password,
+			cpf,
+			phone,
+			address
+		} = req.body;
+
+		return ClientDAO.addClient( [ name , email , password , cpf , phone , address ] );
+	}
+
+	static updateClient(req) {
+		const { id } = req.params;
+		const {
+			name,
+			email,
+			password,
+			cpf,
+			phone,
+			address
+		} = req.body;
+
+		return ClientDAO.updateClient( [ name , email , password , cpf , phone , address , id ] );
+	}
+
+	static deleteClient(req) {
+		const { id } = req.params;
+
+		return ClientDAO.deleteClient( [ id ] );
+	}
 }
 
 module.exports = ClientModel;

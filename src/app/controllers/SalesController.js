@@ -1,66 +1,61 @@
-const SalesDAO = require('../../config/DAO/SalesDAO');
+const SalesModel = require('../models/SalesModel');
 
 class SalesController {
-  constructor(db) {
-    this._salesDAO = new SalesDAO(db);
+  constructor() {
+    throw new Error('This class has no instance!');
   }
 
-  listAll() {
+  static listAll() {
+    return (req,res) => 
+      SalesModel.getAll()
+        .then(sales => {res.send(sales.rows)})
+        .catch(error => {
+          console.log(error);
+          res.send('Unable to complete action\n' + error.message);
+        });
+  }
+
+  static listUserPurchases() {
     return (req,res) => {
-      this._salesDAO.getAll()
-        .then(sales => {
-          res.send(sales);
-        })
-        .catch(err => console.log(err));
+      SalesModel.getUser(req)
+        .then(sales => {res.send(sales.rows)})
+        .catch(error => {
+          console.log(error);
+          res.send('Unable to complete action\n' + error.message);
+        });
     }
   }
 
-  listUserPurchases() {
+  static listProductSales() {
     return (req,res) => {
-
-      const { userId } = req.params;
-
-      this._salesDAO.getUser( [userId] )
-        .then(sales => {
-          res.send(sales);
-        })
-        .catch(err => console.log(err));
+      SalesModel.getProduct(req)
+        .then(sales => { res.send(sales.rows) })
+        .catch(error => {
+          console.log(error);
+          res.send('Unable to complete action\n' + error.message);
+        });
     }
   }
 
-  listProductSales() {
+  static insertNew() {
     return (req,res) => {
-
-      const { productId } = req.params;
-
-      this._salesDAO.getProduct( [productId] )
-        .then(sales => {
-          res.send(sales);
-        })
-        .catch(err => console.log(err));
+      SalesModel.post( req )
+      .then( () => res.send('Sale added!'))
+      .catch( error => {
+        console.log(error);
+        res.send('Unable to complete action\n' + error.message);
+      });
     }
   }
 
-  insertNew() {
+  static cancelSale() {
     return (req,res) => {
-      const {
-        userId,
-        productId
-      } = req.params;
-
-      this._salesDAO.post( [ userId , productId ] )
-      .then( successMsg => res.send(successMsg))
-      .catch( err => console.log(err));
-    }
-  }
-
-  cancelSale() {
-    return (req,res) => {
-      const { saleId } = req.params;
-
-      this._salesDAO.delete( [saleId] )
-      .then( successMsg => res.send(successMsg))
-      .catch( err => console.log(err));
+      SalesModel.delete( req )
+      .then( () => res.send('Sale deleted!'))
+      .catch( error => {
+        console.log(error);
+        res.send('Unable to complete action\n' + error.message);
+      });
     }
   }
 }
