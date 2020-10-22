@@ -8,9 +8,18 @@ class SalesDAO {
   static getAll() {
     const QUERY = `
     SELECT
-      *
+      u.name AS client,
+      p.name AS product
     FROM
-      sales;`;
+      sales s
+    INNER JOIN
+      products p
+    ON
+      p.id = s.product_id
+    INNER JOIN
+      users u
+    ON
+      u.id = s.user_id;`;
 
     return db.query(QUERY);
   }
@@ -19,9 +28,14 @@ class SalesDAO {
     const QUERY = {
       text: `
         SELECT
-          *
+          p.name,
+          p.price
         FROM
           sales
+        INNER JOIN
+          products p
+        ON
+          p.id = s.product_id
         WHERE
           user_id = $1;`,
       values: valuesArr
@@ -33,9 +47,15 @@ class SalesDAO {
     const QUERY = {
       text: `
         SELECT
-          *
+          u.name,
+          u.email,
+          u.address
         FROM
           sales
+        INNER JOIN
+          users u
+        ON
+          u.id = s.user_id
         WHERE
           product_id = $1;`,
       values: valuesArr
