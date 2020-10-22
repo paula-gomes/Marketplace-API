@@ -8,8 +8,8 @@ class SalesDAO {
   static getAll() {
     const QUERY = `
     SELECT
-      u.name,
-      p.name
+      u.name AS client,
+      p.name AS product
     FROM
       sales s
     INNER JOIN
