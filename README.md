@@ -69,7 +69,7 @@ To access the database's information:
 
 # Project Status
 
- <img src="src/img/loading.gif" width = "100"/>
+ <p style="text-align:center;"><img src="src/img/loading.gif" width = "200"></p>
 
 
 
