@@ -9,7 +9,7 @@ Development of a Marketplace API that operates through REST's architecture. By u
 | `PostgreSQL` | Database |
 | `NodeJS`    | Web server environment |
 | `Express` | Used as a project Dependency, it's a Web application framework of NodeJS that handdles middlewares, routes, among other functions|
-| `Nodemon`| Used as a Development Dependency to automatize sever's initialization |
+| `Nodemon`| Used as a Development Dependency to automatize server's initialization |
 | `Heroku`| Application's deployment tool|
 
 # Entities , routes and methods
@@ -35,8 +35,7 @@ To access the database's information:
 | `GET` | `/products/id`| Returns a product of an specific id (that is passed as a parameter in the URI)|
 | `GET` | `/products/supplier/supplier_id`| Returns all of the products of an specific supplier which id is passed as a parameter in the URI |
 | `GET` | `/products/supplier/supplier_id/id`| Return the product of an specific id (that is passed as a parameter in the URI) of a determined supplier which id is passed as a parameter in the URI as well|
-| `POST` | `/products` | Register a new 
-product in the API's database, the data must be sent in the request's body in JSON format|
+| `POST` | `/products` | Register a new product in the API's database, the data must be sent in the request's body in JSON format|
 | `PUT` |`/products/id` | Modifies the information of an specific product (id paramter must be providede in the URI) by sending the new information in the request's body in JSON format|
 | `DELETE` | `/products/id` |Deletes an specific product(id paramater must be providede in the URI)|
 
@@ -70,7 +69,7 @@ product in the API's database, the data must be sent in the request's body in JS
 
 # Project Status
 
-   <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F313422455290017394%2F&psig=AOvVaw0sk1vDXbuX3e9_iHpu7DQA&ust=1603555467958000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMi9n-GLy-wCFQAAAAAdAAAAABAD" width="100"/>
+ <img src="src/img/loading.gif"/>
 
 
 
