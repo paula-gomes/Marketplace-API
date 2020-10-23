@@ -4,7 +4,7 @@ Development of a Marketplace API that operates through REST's architecture. By u
 
 # Technologies used
 
-| Name      | description                       |
+| Name      | Description                       |
 |:--------------|:----------------------------------|
 | `PostgreSQL` | Database |
 | `NodeJS`    | Web server environment |
