@@ -24,8 +24,8 @@ To access the database's information:
 | `GET` | `/clients`| Returns all of the clients registered in the API's database |
 | `GET` | `/clients/id`| Returns the client of an specific id (that is passed as a parameter in the URI)|
 | `POST` | `/clients/add` | Register a new client in the API's database, the data must be sent in the request's body in JSON format|
-| `PUT` |`/clients/id` | Modifies the information of an specific client(id paramter must be providede in the URI) by sending the new information in the request's body in JSON format|
-| `DELETE` | `/clients/id` |Deletes an specific client(id paramater must be providede in the URI)|
+| `PUT` |`/clients/id` | Modifies the information of an specific client(id paramter must be provided in the URI) by sending the new information in the request's body in JSON format|
+| `DELETE` | `/clients/id` |Deletes an specific client(id paramater must be provided in the URI)|
 
 ####                     Products
 
@@ -36,8 +36,8 @@ To access the database's information:
 | `GET` | `/products/supplier/supplier_id`| Returns all of the products of an specific supplier which id is passed as a parameter in the URI |
 | `GET` | `/products/supplier/supplier_id/id`| Return the product of an specific id (that is passed as a parameter in the URI) of a determined supplier which id is passed as a parameter in the URI as well|
 | `POST` | `/products` | Register a new product in the API's database, the data must be sent in the request's body in JSON format|
-| `PUT` |`/products/id` | Modifies the information of an specific product (id paramter must be providede in the URI) by sending the new information in the request's body in JSON format|
-| `DELETE` | `/products/id` |Deletes an specific product(id paramater must be providede in the URI)|
+| `PUT` |`/products/id` | Modifies the information of an specific product (id paramter must be provided in the URI) by sending the new information in the request's body in JSON format|
+| `DELETE` | `/products/id` |Deletes an specific product(id paramater must be provided in the URI)|
 
 ####                    Suppliers
 
@@ -46,7 +46,7 @@ To access the database's information:
 | `GET` | `/suppliers`| Returns all of the suppliers registered in the API's database |
 | `GET` | `/suppliers/id`| Returns the supplier of an specific id (that is passed as a parameter in the URI)|
 | `POST` | `/suppliers/newSupplier` | Register a new supplier in the API's database, the data must be sent in the request's body in JSON format|
-| `PUT` |`/suppliers/id` | Modifies the information of an specific supplier(id paramter must be providede in the URI) by sending the new information in the request's body in JSON format|
+| `PUT` |`/suppliers/id` | Modifies the information of an specific supplier(id paramter must be provided in the URI) by sending the new information in the request's body in JSON format|
 | `DELETE` | `/suppliers/id` |Deletes an specific supplier(id paramater must be provided in the URI)|
 
 
@@ -58,7 +58,7 @@ To access the database's information:
 | `GET` | `/sales/user/userId`| Returns the purchase of an specific client, which id is passed as a parameter in the URI|
 | `GET` | `/sales/product/productId` | Returns all of the sales of an specific product, which id is passed as a parameter in the URI|
 | `POST` |`/sales/newSale` | Register a new sale in the API's database, the data must be sent in the request's body in JSON format|
-| `DELETE` | `/sales/cancelSale/saleId`| Cancels an specific sale(id paramater must be providede in the URI)|
+| `DELETE` | `/sales/cancelSale/saleId`| Cancels an specific sale(id paramater must be provided in the URI)|
 
 # Contributors
 
