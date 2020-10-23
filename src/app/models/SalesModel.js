@@ -10,24 +10,24 @@ class SalesModel {
   }
 
   static getUser(req) {
-    const { userId } = req.params;
+    const { user_id } = req.params;
 
-    return SalesDAO.getUser( [ userId ] );
+    return SalesDAO.getUser( [ user_id ] );
   }
 
   static getProduct(req) {
-    const { productId } = req.params;
+    const { product_id } = req.params;
 
-    return  SalesDAO.getProduct( [ productId ] );
+    return  SalesDAO.getProduct( [ product_id ] );
   }
 
   static post( req ) {
     const { 
-      userId,
-      productId
+      user_id,
+      product_id
     } = req.body;
 
-    return  SalesDAO.post( [ userId , productId ] );
+    return  SalesDAO.post( [ user_id , product_id ] );
   }
 
   static delete( req ) {

@@ -31,7 +31,7 @@ class SalesDAO {
           p.name,
           p.price
         FROM
-          sales
+          sales s
         INNER JOIN
           products p
         ON
@@ -51,7 +51,7 @@ class SalesDAO {
           u.email,
           u.address
         FROM
-          sales
+          sales s
         INNER JOIN
           users u
         ON

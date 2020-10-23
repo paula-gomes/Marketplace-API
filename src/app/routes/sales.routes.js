@@ -11,10 +11,10 @@ module.exports = (app) => {
   // List of all sales
   app.get('/sales', SalesController.listAll());
   // List of purchases made by an specific user
-  app.get('/sales/user/:userId', SalesController.listUserPurchases());
+  app.get('/sales/user/:user_id', SalesController.listUserPurchases());
   
   // List of sales of an specific product
-  app.get('/sales/product/:productId', SalesController.listProductSales());
+  app.get('/sales/product/:product_id', SalesController.listProductSales());
   
   // Insertion of a new sale
   app.post('/sales/newSale', SalesController.insertNew());
