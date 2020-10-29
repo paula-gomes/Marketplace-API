@@ -33,10 +33,11 @@ class ProductModel {
 			description,
 			price,
 			in_stock,
-			supplier_id
+			supplier_id,
+			img
 		} = req.body;
 		
-		return ProductDao.addProduct( [ rating , name , description , price , in_stock , supplier_id ] );
+		return ProductDao.addProduct( [ rating , name , description , price , in_stock , supplier_id , img ] );
 	}
 
 	static updateProduct(req) {
@@ -47,10 +48,11 @@ class ProductModel {
 			description,
 			price,
 			in_stock,
-			supplier_id
+			supplier_id,
+			img
 		} = req.body;
 
-		return ProductDao.updateProduct( [ rating , name , description , price , in_stock , supplier_id , id ] );
+		return ProductDao.updateProduct( [ rating , name , description , price , in_stock , supplier_id , img , id ] );
 	}
 
 	static deleteProduct(req) {

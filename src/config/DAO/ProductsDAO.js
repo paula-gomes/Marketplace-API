@@ -63,9 +63,9 @@ class ProductDao {
 		const QUERY = {
 			text: `
 				INSERT INTO products
-					(rating, name, description, price, in_stock, supplier_id)
+					(rating, name, description, price, in_stock, supplier_id , img)
 				VALUES
-					( $1 , $2 , $3 , $4 , $5 , $6 );`,
+					( $1 , $2 , $3 , $4 , $5 , $6 , $7);`,
 			values: valuesArr
 		};
 
@@ -83,9 +83,10 @@ class ProductDao {
 					description = $3,
 					price = $4,
 					in_stock = $5,
-					supplier_id = $6
+					supplier_id = $6,
+					img = $7
 				WHERE
-					id = $7;`,
+					id = $8;`,
 			values: valuesArr
 		};
 
