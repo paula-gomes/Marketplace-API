@@ -9,7 +9,9 @@ class SalesDAO {
     const QUERY = `
     SELECT
       u.name AS client,
-      p.name AS product
+      u.id AS client_id,
+      p.name AS product,
+      p.id AS product_id
     FROM
       sales s
     INNER JOIN
@@ -29,7 +31,8 @@ class SalesDAO {
       text: `
         SELECT
           p.name,
-          p.price
+          p.price,
+          p.id
         FROM
           sales s
         INNER JOIN
@@ -49,7 +52,8 @@ class SalesDAO {
         SELECT
           u.name,
           u.email,
-          u.address
+          u.address,
+          u.id
         FROM
           sales s
         INNER JOIN
