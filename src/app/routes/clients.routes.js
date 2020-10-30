@@ -8,8 +8,8 @@ module.exports = (app) => {
 
     app.post('/clients/add', ClientController.addClient());
 
-    app.put('/clients/:id',ClientController.updateClient());
+    app.put('/clients/:id', ClientController.updateClient());
 
-    app.delete('/clients/:id',ClientController.deleteClient());
+    app.delete('/clients/:id', ClientController.deleteClient());
 
 };
