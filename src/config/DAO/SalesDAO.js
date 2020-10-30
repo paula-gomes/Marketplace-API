@@ -9,7 +9,7 @@ class SalesDAO {
     const QUERY = `
     SELECT
       u.name AS client,
-      u.id AS client_id
+      u.id AS client_id,
       p.name AS product,
       p.id AS product_id
     FROM
