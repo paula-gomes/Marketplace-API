@@ -1,4 +1,3 @@
-const { response } = require('express');
 const ClientModel = require('../models/ClientsModel');
 
 class ClientController {
@@ -19,29 +18,6 @@ class ClientController {
                 .then( response => res.send(response.rows))
                 .catch((err) => console.log('Request failed to return one client\n' + err))
         });
-    }
-
-    static validateClient() {
-
-        return ( ( req , res ) => {
-            const { pwrd } = req.body;
-            ClientModel.validateClient( req )
-                .then( response => response.rows)
-                    .then( data => {
-                        if ( data.length > 0 && data[0].pwrd === pwrd ) {
-                            res.json({
-                                "msg": 'Valid client.\nRedirecting...',
-                                "validated": 1
-                            });
-                        } else {
-                            res.json({
-                                "msg": 'Incorrect email or password',
-                                "validated": 0
-                            });
-                        }
-                    })
-                .catch( err => console.log( err ) );
-        })
     }
 
     static addClient() {

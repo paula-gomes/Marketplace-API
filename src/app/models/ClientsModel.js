@@ -1,4 +1,3 @@
-const { Client } = require('pg');
 const ClientDAO = require('../../config/DAO/ClientsDAO');
 
 class ClientModel {
@@ -15,14 +14,6 @@ class ClientModel {
 		} = req.params;
 
 		return ClientDAO.getOneClient( [ id ] );
-	}
-
-	static validateClient( req ) {
-		const {
-			email
-		} = req.params;
-
-		return ClientDAO.validateClient( [ email ] );
 	}
 
 	static addClient( req ) {

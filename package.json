@@ -22,7 +22,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
-    "pg": "^8.4.1"
+    "pg": "^8.4.1",
+    "uuid-token-generator": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
