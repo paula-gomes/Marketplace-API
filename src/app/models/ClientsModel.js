@@ -1,3 +1,4 @@
+const { Client } = require('pg');
 const ClientDAO = require('../../config/DAO/ClientsDAO');
 
 class ClientModel {
@@ -8,7 +9,7 @@ class ClientModel {
 		return ClientDAO.getAllClients();
 	}
 
-	static getOneClient(req) {
+	static getOneClient( req ) {
 		const {
 			id
 		} = req.params;
@@ -16,7 +17,15 @@ class ClientModel {
 		return ClientDAO.getOneClient( [ id ] );
 	}
 
-	static addClient(req) {
+	static validateClient( req ) {
+		const {
+			email
+		} = req.params;
+
+		return ClientDAO.validateClient( [ email ] );
+	}
+
+	static addClient( req ) {
 		const {
 			name,
 			email,
@@ -29,7 +38,7 @@ class ClientModel {
 		return ClientDAO.addClient( [ name , email , password , cpf , phone , address ] );
 	}
 
-	static updateClient(req) {
+	static updateClient( req ) {
 		const { id } = req.params;
 		const {
 			name,
@@ -43,7 +52,7 @@ class ClientModel {
 		return ClientDAO.updateClient( [ name , email , password , cpf , phone , address , id ] );
 	}
 
-	static deleteClient(req) {
+	static deleteClient( req ) {
 		const { id } = req.params;
 
 		return ClientDAO.deleteClient( [ id ] );
