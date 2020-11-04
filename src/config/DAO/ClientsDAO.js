@@ -69,6 +69,22 @@ class ClientDao {
 
 		return db.query(QUERY);
 	}
+
+	static validateClient( valuesArr ) {
+		const QUERY = {
+			text: `
+				SELECT
+					id
+				FROM
+					users
+				WHERE
+					email = $1 AND
+					pwrd = $2;`,
+			values: valuesArr
+		}
+
+		return db.query(QUERY);
+	}
 };
 
 module.exports = ClientDao;
