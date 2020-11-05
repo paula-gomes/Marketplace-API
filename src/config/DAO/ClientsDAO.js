@@ -26,6 +26,21 @@ class ClientDao {
 		return db.query(QUERY);
 	}
 
+	static getOneClientEmail( valuesArr ) {
+		const QUERY = {
+			text: `
+				SELECT
+					*
+				FROM
+					users
+				WHERE
+					email = $1;`,
+			values: valuesArr
+		};
+
+		return db.query(QUERY);
+	}
+
 	static addClient( valuesArr ) {
 		const QUERY = {
 			text: `

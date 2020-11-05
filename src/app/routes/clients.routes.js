@@ -6,6 +6,8 @@ module.exports = (app) => {
 
     app.get('/clients/:id', ClientController.getOneClient());
 
+    app.get('/clients/email/:email', ClientController.getOneClientEmail());
+
     app.post('/clients/add', ClientController.addClient());
 
     app.put('/clients/:id', ClientController.updateClient());

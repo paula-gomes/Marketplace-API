@@ -16,7 +16,15 @@ class ClientModel {
 		return ClientDAO.getOneClient( [ id ] );
 	}
 
-	static addClient( req ) {
+	static getOneClientEmail (req){
+		const {
+			email
+		} = req.params;
+
+		return ClientDAO.getOneClient( [ email ] );
+	}
+
+ 	static addClient( req ) {
 		const {
 			name,
 			email,
@@ -28,6 +36,7 @@ class ClientModel {
 
 		return ClientDAO.addClient( [ name , email , password , cpf , phone , address ] );
 	}
+	
 
 	static updateClient( req ) {
 		const { id } = req.params;

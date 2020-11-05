@@ -20,6 +20,16 @@ class ClientController {
         });
     }
 
+    static getOneClientEmail() {
+
+        return (( req , res ) => {
+            ClientModel.getOneClientEmail( req )
+                .then( response => res.send(response.rows))
+                .catch((err) => console.log('Request failed to return one client\n' + err))
+        });
+    }
+
+
     static addClient() {
 
         return (( req , res ) => {
